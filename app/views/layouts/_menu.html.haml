@@ -1,0 +1,48 @@
+%nav{ class: 'navbar navbar-default navbar-fixed-top', role: 'navigation' }
+  %div{ class: 'navbar-header'}
+    %button.some{ type: 'button', class: 'navbar-toggle', 'data-toggle': 'collapse', 'data-target': '#bs-example-navbar-collapse-1' }
+      %span{ class: 'sr-only' } Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    %a.navbar-brand.some{ href: root_path } 
+      %img.logo{ height: '30', src: '/assets/logo.jpg' }
+  %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
+    %ul.some{ class: 'nav navbar-nav'}
+      %li.Station
+        %a{ href: '#' } Пользователи
+      %li.Train
+        %a{ href: '#' } Тесты
+      // %li.dropdown
+      //   %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
+      //     Dropdown
+      //     %strong{ class: 'caret' }
+      //   %ul.dropdown-menu
+      //     %li
+      //       %a{ href: '#' } Action
+      //     %li
+      //       %a{ href: '#' } Another action
+      //     %li
+      //       %a{ href: '#' } Something else here
+      //     %li.divider
+      //     %li
+      //       <a{ href: '#' } Separated link
+      //     %li.divider
+      //     %li
+      //       %a{ href: '#' } One more separated link
+    = render 'layouts/search_form'
+    %ul{ class: 'nav navbar-nav navbar-right' }
+      %li
+        %a{ href: '#' } Link
+      %li.dropdown
+        %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
+          Имя пользователя
+          %strong{ class: 'caret' }
+        %ul.dropdown-menu
+          %li
+            %a{ href: '#' } Профиль
+          %li
+            %a{ href: '#' } Сменить пароль
+          %li.divider
+          %li
+            %a{ href: '#' } Выход
