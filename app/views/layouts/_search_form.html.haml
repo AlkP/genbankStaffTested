@@ -1,5 +1,8 @@
-%form{ class: 'navbar-form navbar-left', role: 'search' }
+
+= form_tag @search, class: 'navbar-form navbar-left', role: 'search' do
+  %input.form-control.some{ name: :id, type: 'hidden', value: "" } 
+  %input.form-control.some{ name: :controller, type: 'hidden', value: "#{controller_name}" } 
   %div{ class: 'form-group' }
-    %input{ type: 'text', class: 'form-control' }
+    %input.form-control.some{ name: :search, type: 'text' }
   %button{ type: 'submit', class: 'btn btn-default' }
     Поиск

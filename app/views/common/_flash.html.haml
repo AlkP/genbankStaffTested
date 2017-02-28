@@ -1,0 +1,6 @@
+- if flash.any?
+  %div.alert.alert-dismissable
+    %button.close{ type: 'button', 'data-dismiss': 'alert', 'aria-hidden': 'true' } ×
+    %ul
+      - flash.each do |key, value|
+        %div.alert.some{ class: "alert-#{key}"}= value

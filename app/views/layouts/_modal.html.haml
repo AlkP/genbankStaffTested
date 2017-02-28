@@ -1,0 +1,38 @@
+// %a#modal-110063.btn.some{ href: '#modal-container-110063', role: 'button', 'data-toggle': 'modal' } Launch demo modal
+			
+%div.modal.fade#modal-container-110063.some{ role: 'dialog',  'aria-labelledby': 'myModalLabel', 'aria-hidden': 'true' }
+  %div.modal-dialog
+    %div.modal-content
+      // %span.spinner
+      %div.spinner
+        %div#floatingBarsG
+          %div.blockG#rotateG_01
+          %div.blockG#rotateG_02
+          %div.blockG#rotateG_03
+          %div.blockG#rotateG_04
+          %div.blockG#rotateG_05
+          %div.blockG#rotateG_06
+          %div.blockG#rotateG_07
+          %div.blockG#rotateG_08
+      %div.spinner-off.body-for-form
+        %div.modal-header
+          %button.close.some{ type: 'button', 'data-dismiss': 'modal', 'aria-hidden': 'true' }
+            ×
+          %h4.modal-title#myModalLabel110063
+            Редактирование
+        %div.modal-body
+          assd
+        %div.modal-footer
+          %button.btn.btn-default.some{ type: 'button', 'data-dismiss': 'modal' }
+            Отмена
+          %button.btn.btn-primary.some{ type: 'button' }
+            Сохранить 
+:javascript
+  $( document ).ajaxStart(function() {
+    $( ".spinner" ).show();
+    $( ".spinner-off" ).hide();
+  });
+  $( document ).ajaxStop(function() {
+    $( ".spinner" ).hide();
+    $( ".spinner-off" ).show();
+  });

@@ -1,0 +1,21 @@
+= form_for @role, html: { class: 'form-horizontal', role: 'form', remote: true } do |f|
+  %div.modal-header
+    %button.close.some{ type: 'button', 'data-dismiss': 'modal', 'aria-hidden': 'true' }
+      ×
+    %h4.modal-title#myModalLabel110063
+      = @title
+  %div.modal-body
+  
+    = render 'common/flash'
+
+    %div.form-group
+      %label.col-sm-4.control-label.some{ for: 'inputRoleName' }
+        Наименование роли
+      %div.col-sm-8
+        = f.text_field :name, autofocus: true, html: { class: 'form-control', id: 'inputRoleName', type: 'rolename' }
+  %div.modal-footer
+    %button.btn.btn-default.some{ type: 'button', 'data-dismiss': 'modal' }
+      Отмена
+    - if action_name != 'show'
+      %button.btn.btn-primary.some{ type: 'button submit' }
+        Сохранить

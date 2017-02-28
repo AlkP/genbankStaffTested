@@ -1,0 +1,60 @@
+
+%menu#nestable-menu
+  %button.some{ type: 'button', 'data-action': 'expand-all' } Expand All
+  %button.some{ type: 'button', 'data-action': 'collapse-all' } Collapse All
+
+%div.cf.nestable-lists
+  %div.dd#nestable
+    %ol.dd-list
+      %li.dd-item.dd3-item.some{ 'data-id': '13' }
+        %div.dd-handle.dd3-handle Drag
+        %div.dd3-content Отд 1
+      %li.dd-item.dd3-item.some{ 'data-id': '14' }
+        %div.dd-handle.dd3-handle Drag
+        %div.dd3-content Отд 2
+      %li.dd-item.dd3-item.some{ 'data-id': '15' }
+        %div.dd-handle.dd3-handle Drag
+        %div.dd3-content Группа отделений
+        %ol.dd-list
+          %li.dd-item.dd3-item.some{ 'data-id': '16' }
+            %div.dd-handle.dd3-handle Drag
+            %div.dd3-content Отд 3
+          %li.dd-item.dd3-item.some{ 'data-id': '17' }
+            %div.dd-handle.dd3-handle Drag
+            %div.dd3-content Отд 4
+          %li.dd-item.dd3-item.some{ 'data-id': '18' }
+            %div.dd-handle.dd3-handle Drag
+            %div.dd3-content Отд 5
+
+%textarea#nestable-output
+
+:javascript
+  $(document).ready(function()
+  {
+    var updateOutput = function(e)
+    {
+      var list   = e.length ? e : $(e.target),
+        output = list.data('output');
+      if (window.JSON) {
+        output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+      } else {
+        output.val('JSON browser support required for this demo.');
+      }
+    };
+    // activate Nestable for list
+    $('#nestable').nestable({ group: 1 }).on('change', updateOutput);
+    $('#nestable').nestable();
+    // output initial serialised data
+    updateOutput($('#nestable').data('output', $('#nestable-output')));
+    $('#nestable-menu').on('click', function(e)
+    {
+      var target = $(e.target),
+        action = target.data('action');
+      if (action === 'expand-all') {
+        $('.dd').nestable('expandAll');
+      }
+      if (action === 'collapse-all') {
+        $('.dd').nestable('collapseAll');
+      }
+    });
+  });

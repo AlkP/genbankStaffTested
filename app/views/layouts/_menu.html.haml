@@ -9,40 +9,37 @@
       %img.logo{ height: '30', src: '/assets/logo.jpg' }
   %div{ class: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1'}
     %ul.some{ class: 'nav navbar-nav'}
-      %li.Station
-        %a{ href: '#' } Пользователи
-      %li.Train
-        %a{ href: '#' } Тесты
-      // %li.dropdown
-      //   %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
-      //     Dropdown
-      //     %strong{ class: 'caret' }
-      //   %ul.dropdown-menu
-      //     %li
-      //       %a{ href: '#' } Action
-      //     %li
-      //       %a{ href: '#' } Another action
-      //     %li
-      //       %a{ href: '#' } Something else here
-      //     %li.divider
-      //     %li
-      //       <a{ href: '#' } Separated link
-      //     %li.divider
-      //     %li
-      //       %a{ href: '#' } One more separated link
-    = render 'layouts/search_form'
-    %ul{ class: 'nav navbar-nav navbar-right' }
-      %li
-        %a{ href: '#' } Link
-      %li.dropdown
+      %li.User.dropdown
         %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
-          Имя пользователя
+          Управление пользователями
           %strong{ class: 'caret' }
         %ul.dropdown-menu
           %li
-            %a{ href: '#' } Профиль
+            %a{ href: users_path } Пользователи
           %li
-            %a{ href: '#' } Сменить пароль
-          %li.divider
+            %a{ href: structures_path } Структура организации
           %li
-            %a{ href: '#' } Выход
+            %a{ href: nomenclatures_path } Должностная номенклатура
+          %li
+            %a{ href: groups_path } Группы пользователей
+          %li
+            %a{ href: roles_path } Роли пользователей
+      %li.Test
+        %a{ href: '#' } Тесты
+    = render 'layouts/search_form'
+    
+    %ul{ class: 'nav navbar-nav navbar-right' }
+      - if user_signed_in?
+        %li.dropdown
+          %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
+            = current_user.initials
+            %strong{ class: 'caret' }
+          %ul.dropdown-menu
+            %li
+              %a{ href: '#' } Сменить пароль
+            %li.divider
+            %li
+              = link_to 'Выйти', destroy_user_session_path, method: :delete
+      - else
+        %li
+          = link_to 'Вход в систему', new_user_session_path
