@@ -1,9 +1,9 @@
 %tr
-  %td= nomenclature.id
+  %td= group.id
   %td
-    - if nomenclature.nomenclature_id.blank?
-      = link_to nomenclature.title, 
-            nomenclature,
+    - if group.group_id.blank?
+      = link_to group.title, 
+            group,
             remote: true, 
             onclick: "$('#modal-container-110063').modal('show');",
             'text-indent': '20px'
@@ -11,30 +11,30 @@
       %div.col-md-12
         %div.some{ class: "col-md-#{count}" }
         %div.some{ class: "col-md-#{12 - count}" }
-          = link_to nomenclature.title, 
-            nomenclature,
+          = link_to group.title, 
+            group,
             remote: true, 
             onclick: "$('#modal-container-110063').modal('show');",
             'text-indent': '20px'
   %td
     = link_to image_tag('plus.png', border: 0, size: '20x20'), 
-            new_nomenclature_path(:id => nomenclature.id),
+            new_group_path(:id => group.id),
             title: 'Добавить новую запись',
             remote: true, 
             onclick: "$('#modal-container-110063').modal('show');"
   %td
     = link_to image_tag("pen.png", border: 0, size: '24x24'), 
-          edit_nomenclature_path(nomenclature), 
+          edit_group_path(group), 
           remote: true, 
           onclick: "$('#modal-container-110063').modal('show');"
   %td
-    - if nomenclature.avalable_to_delete?
+    - if group.avalable_to_delete?
       = link_to image_tag("delete.png", border: 0, size: '24x24'),
-          nomenclature_path(nomenclature, :page => params[:page]),
+          group_path(group, :page => params[:page]),
           :method => :delete, 
-          :data => { :confirm => "Действительно удалить номенклатурную единицу: #{nomenclature.title}?" }
+          :data => { :confirm => "Действительно удалить номенклатурную единицу: #{group.title}?" }
 
-- if Nomenclature.where("nomenclature_id = #{nomenclature.id}").size > 0
+- if Group.where("group_id = #{group.id}").size > 0
   - count = count.blank? ? 0 : count + 1
-  - Nomenclature.where("nomenclature_id = #{nomenclature.id}").each do |f|
-    = render :partial => "nomenclature", :object => f, :locals => { :count => count }
+  - Group.where("group_id = #{group.id}").each do |f|
+    = render :partial => "group", :object => f, :locals => { :count => count }

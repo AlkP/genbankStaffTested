@@ -9,7 +9,6 @@ class NomenclaturesController < ApplicationController
   
   def index
     @search = 'nomenclatures/search'
-    @count = 0
     @nomenclatures = Nomenclature.where('nomenclature_id IS NULL').page(params[:page])
   end
   
@@ -62,7 +61,7 @@ class NomenclaturesController < ApplicationController
   
   def find_parent
     @parents = Nomenclature.all
-    # @parents = @parents.where("id IS NOT #{params[:id]}") unless params[:id].nil? || action_name == "new" || action_name == "create"
+    @parents = @parents.where("id IS NOT #{params[:id]}") unless params[:id].nil? || action_name == "new" || action_name == "create"
   end
   
   def nomenclatures_params
@@ -78,6 +77,6 @@ class NomenclaturesController < ApplicationController
   end
   
   def sleep_now
-    sleep 0
+    sleep PAUSE_FOR_RESPONSE
   end
 end

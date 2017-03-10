@@ -1,8 +1,8 @@
 
 %h1 
-  Должностная номенклатура (
+  Групы пользователей (
   = link_to image_tag('plus.png', border: 0, size: '36x36'), 
-            new_nomenclature_path,
+            new_group_path,
             class: 'btn btn-default',
             title: 'Добавить новую запись',
             remote: true, 
@@ -11,13 +11,13 @@
 %br
 %table.table.table-striped
   %thead
-    = render 'nomenclature_title'
-  %tbody.tbody-nomenclatures
-    = render @nomenclatures
+    = render 'group_title'
+  %tbody.tbody-groups
+    = render @groups
 
 %br
 
-= paginate @nomenclatures, :theme => 'twitter-bootstrap-3',
+= paginate @groups, :theme => 'twitter-bootstrap-3',
                    :pagination_class => "pagination-sm"
 
 %br

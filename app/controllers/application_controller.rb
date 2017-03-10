@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
+  PAUSE_FOR_RESPONSE = 3
+  
   protected
   
   def admin?

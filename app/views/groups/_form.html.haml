@@ -1,4 +1,4 @@
-= form_for @nomenclature, html: { class: 'form-horizontal', role: 'form', remote: true } do |f|
+= form_for @group, html: { class: 'form-horizontal', role: 'form', remote: true } do |f|
   %div.modal-header
     %button.close.some{ type: 'button', 'data-dismiss': 'modal', 'aria-hidden': 'true' }
       ×
@@ -9,15 +9,15 @@
     = render 'common/flash'
 
     %div.form-group
-      %label.col-sm-4.control-label.some{ for: 'inputNomenclatureIdName' }
+      %label.col-sm-4.control-label.some{ for: 'inputGroupIdName' }
         Родитель
       %div.col-sm-8
-        = f.collection_select :nomenclature_id, @parents, :id, :title, include_blank: true, hide_label: true, :selected => @nomenclature.nomenclature_id
+        = f.collection_select :group_id, @parents, :id, :title, include_blank: true, hide_label: true, :selected => @group.group_id
     %div.form-group
-      %label.col-sm-4.control-label.some{ for: 'inputNomenclatureName' }
+      %label.col-sm-4.control-label.some{ for: 'inputGroupName' }
         Наименование
       %div.col-sm-8
-        = f.text_field :title, autofocus: true, html: { class: 'form-control', id: 'inputNomenclatureName', type: 'nomenclaturename' }
+        = f.text_field :title, autofocus: true, html: { class: 'form-control', id: 'inputGroupName', type: 'groupname' }
   %div.modal-footer
     %button.btn.btn-default.some{ type: 'button', 'data-dismiss': 'modal' }
       Отмена

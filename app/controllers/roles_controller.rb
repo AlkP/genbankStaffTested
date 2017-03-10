@@ -67,6 +67,6 @@ class RolesController < ApplicationController
   end
   
   def sleep_now
-    sleep 3
+    sleep PAUSE_FOR_RESPONSE
   end
 end

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   belongs_to :role
   belongs_to :nomenclature
+  belongs_to :structure
   
   def admin?
     self.role.name.underscore.to_sym == :admin
