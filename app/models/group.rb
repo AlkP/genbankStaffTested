@@ -6,6 +6,6 @@ class Group < ApplicationRecord
   paginates_per 15
   
   def avalable_to_delete?
-    Group.where( "group_id = #{self.id}").first.nil?
+    Group.where( "group_id = '#{self.id}'").first.nil?
   end
 end
