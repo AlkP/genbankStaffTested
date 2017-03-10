@@ -1,0 +1,40 @@
+%tr
+  %td= nomenclature.id
+  %td
+    - if nomenclature.nomenclature_id.blank?
+      = link_to nomenclature.title, 
+            nomenclature,
+            remote: true, 
+            onclick: "$('#modal-container-110063').modal('show');",
+            'text-indent': '20px'
+    - else
+      %div.col-md-12
+        %div.some{ class: "col-md-#{count}" }
+        %div.some{ class: "col-md-#{12 - count}" }
+          = link_to nomenclature.title, 
+            nomenclature,
+            remote: true, 
+            onclick: "$('#modal-container-110063').modal('show');",
+            'text-indent': '20px'
+  %td
+    = link_to image_tag('plus.png', border: 0, size: '20x20'), 
+            new_nomenclature_path(:id => nomenclature.id),
+            title: 'Добавить новую запись',
+            remote: true, 
+            onclick: "$('#modal-container-110063').modal('show');"
+  %td
+    = link_to image_tag("pen.png", border: 0, size: '24x24'), 
+          edit_nomenclature_path(nomenclature), 
+          remote: true, 
+          onclick: "$('#modal-container-110063').modal('show');"
+  %td
+    - if nomenclature.avalable_to_delete?
+      = link_to image_tag("delete.png", border: 0, size: '24x24'),
+          nomenclature_path(nomenclature, :page => params[:page]),
+          :method => :delete, 
+          :data => { :confirm => "Действительно удалить роль: #{nomenclature.title}?" }
+
+- if Nomenclature.where("nomenclature_id = #{nomenclature.id}").size > 0
+  - Nomenclature.where("nomenclature_id = #{nomenclature.id}").each do |f|
+    - count = count.blank? ? 0 : count + 1
+    = render :partial => "nomenclature", :object => f, :locals => { :count => count }

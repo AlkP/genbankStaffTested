@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :trackable, :timeoutable
   
   belongs_to :role
+  belongs_to :nomenclature
   
   def admin?
     self.role.name.underscore.to_sym == :admin

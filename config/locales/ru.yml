@@ -1,2 +1,5 @@
 ru:
-  
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Ошибка создания записи"

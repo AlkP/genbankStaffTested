@@ -1,7 +1,6 @@
 %tr
   %td= role.id
-  %td= role.name
-  %td= link_to image_tag("loupe.png", border: 0, size: '24x24'), 
+  %td= link_to role.name, 
           role,
           remote: true, 
           onclick: "$('#modal-container-110063').modal('show');"
