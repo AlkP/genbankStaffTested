@@ -35,6 +35,6 @@
           :data => { :confirm => "Действительно удалить роль: #{nomenclature.title}?" }
 
 - if Nomenclature.where("nomenclature_id = #{nomenclature.id}").size > 0
+  - count = count.blank? ? 0 : count + 1
   - Nomenclature.where("nomenclature_id = #{nomenclature.id}").each do |f|
-    - count = count.blank? ? 0 : count + 1
     = render :partial => "nomenclature", :object => f, :locals => { :count => count }
