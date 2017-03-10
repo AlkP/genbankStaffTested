@@ -61,7 +61,7 @@ class StructuresController < ApplicationController
   
   def find_parent
     @parents = Structure.all
-    @parents = @parents.where("id IS NOT #{params[:id]}") unless params[:id].nil? || action_name == "new" || action_name == "create"
+    @parents = @parents.where("id NOT IN (#{params[:id]})") unless params[:id].nil? || action_name == "new" || action_name == "create"
   end
   
   def structures_params
