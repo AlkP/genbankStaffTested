@@ -1,0 +1,54 @@
+= form_for @user, html: { class: 'form-horizontal', role: 'form', remote: true } do |f|
+  %div.modal-header
+    %button.close{ type: 'button', 'data-dismiss': 'modal', 'aria-hidden': 'true' }
+      ×
+    %h4.modal-title#myModalLabel110063
+      = @title
+  %div.modal-body
+  
+    = render 'common/flash'
+
+    %div.form-group
+      %label.col-sm-4.control-label{  for: 'inputStructureIdName' }
+        = t('.role')
+      %div.col-sm-8
+        = f.collection_select :role_id, @roles, :id, :name, { include_blank: true, hide_label: true, :selected => @user.role_id }, {:class => "form-control"}
+    %div.form-group
+      %label.col-sm-4.control-label{ for: 'inputStructureIdName' }
+        = t('.structure')
+      %div.col-sm-8
+        = f.collection_select :structure_id, @structures, :id, :name, { include_blank: true, :selected => @user.structure_id }, {:class => "form-control"}
+    %div.form-group
+      %label.col-sm-4.control-label{ for: 'inputNomenclatureIdName' }
+        = t('.nomenclature')
+      %div.col-sm-8
+        = f.collection_select :nomenclature_id, @nomenclatures, :id, :title, {include_blank: true, :selected => @user.nomenclature_id}, {:class => "form-control"}
+    %div.form-group
+      %label.col-sm-4.control-label{ for: 'inputStructureName' }
+        = t('.username')
+      %div.col-sm-8
+        = f.text_field :username, autofocus: true, :class => 'form-control', :id => "inputUsername", :type => "username"
+    %div.form-group
+      %label.col-sm-4.control-label{ for: 'inputInitials' }
+        = t('.initials')
+      %div.col-sm-8
+        = f.text_field :initials, autofocus: true, :class => 'form-control', :id => "inputInitials", :type => "initials"
+    %div.form-group
+      %label.col-sm-4.control-label{ for: 'inputStructureName' }
+        = t('.email')
+      %div.col-sm-8
+        = f.email_field :email, autofocus: true, :class => "form-control", :id => "inputEmai", :type => "email"
+    %div.divider
+    %div.form-group
+      %label.col-sm-4.control-label{ for: 'inputStructureName' }
+        = t('.group')
+      %div.col-sm-8.user-role-table
+        %table.table.table-striped
+          %tbody.tbody-structures
+            = render 'users/table_groups'
+  %div.modal-footer
+    %button.btn.btn-default{ type: 'button', 'data-dismiss': 'modal' }
+      = t('.close')
+    - if action_name != 'show'
+      %button.btn.btn-primary{ type: 'button submit' }
+        = t('.submit')

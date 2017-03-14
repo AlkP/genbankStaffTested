@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :nomenclatures
   end
 
+  get "/edit_password/:id" => "users#edit_password", as: "edit_password"
+  patch "/update_password/:id" => "users#update_password", as: "update_password"
+  
   root 'home#show'
 
   get "/*other_all_page" => 'home#show'

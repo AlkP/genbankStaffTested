@@ -4,9 +4,11 @@ class User < ApplicationRecord
   # :recoverable, :registerable, :rememberable, 
   devise :database_authenticatable, :trackable, :timeoutable
   
-  belongs_to :role
-  belongs_to :nomenclature
-  belongs_to :structure
+  belongs_to :role, optional: true
+  belongs_to :nomenclature, optional: true
+  belongs_to :structure, optional: true
+  
+  paginates_per 15
   
   def admin?
     self.role.name.underscore.to_sym == :admin
@@ -14,5 +16,9 @@ class User < ApplicationRecord
   
   def manager?
     self.role.name.underscore.to_sym == :manager
+  end
+  
+  def avalable_to_delete?
+    true
   end
 end

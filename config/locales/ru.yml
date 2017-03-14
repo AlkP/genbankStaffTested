@@ -3,3 +3,169 @@ ru:
     errors:
       messages:
         record_invalid: "Ошибка создания записи"
+  layouts:
+    menu:
+      user_control: "Управление пользователями"
+      users: "Пользователи"
+      structures: "Структура организации"
+      nomenclatures: "Должностная номенклатура"
+      groups: "Группы пользователей"
+      roles: "Роли пользователей"
+      tests: "Тесты"
+      change_password: "Сменить пароль"
+      login: "Вход в систему"
+      logout: "Выйти"
+    search_form:
+      submit: "Поиск"
+  users:
+    form:
+      role: "Роль"
+      structure: "Место работы"
+      nomenclature: "Должность"
+      username: "Имя пользователя"
+      initials: "ФИО"
+      email: "email"
+      group: "Группы пользователя"
+      close: "Отмена"
+      submit: "Сохранить"
+      new_group_for_user: "Добавить новую группу для пользователя"
+    user:
+      confirm: "Действительно удалить пользователя: %{username}?"
+    index:
+      title: "Пользователи системы"
+      new_user: 'Добавить новую запись'
+    new:
+      title: "Добавление нового сотрудника"
+    show:
+      title: "Просмотр сотрудника"
+    edit:
+      title: "Редактирование сотрудника"
+    update:
+      title: "Редактирование сотрудника"
+    edit_password: 
+      title: "Смена пароля: %{name}"
+    update_password:
+      successful: "Пароль для '%{name}' успешно изменен"
+      danger: "Пользователю '%{name}', не может быть задан пароль"
+    create:
+      title: "Добавление нового сотрудника"
+    destroy:
+      notice: "Пользователь '%{name}' удален"
+      danger_admin: "Пользователь '%{name}' не может быть удален"
+      danger: "Пользователь не имеет прав на удаление"
+    password:
+      enter_password: "пароль"
+      enter_password_confirmation: "подтвердить"
+      close: "Отмена"
+      submit: "Сохранить"
+  nomenclatures:
+    nomenclature_title:
+      title: "Номенклатура"
+    form:
+      parent: "Вышестоящий"
+      name: "Наименование"
+      close: "Отмена"
+      submit: "Сохранить"
+    new:
+      title: "Добавление новой должности"
+    show:
+      title: "Просмотр должности"
+    create:
+      title: "Добавление новой должности"
+    edit:
+      title: "Редактирование должности"
+    update:
+      title: "Редактирование должности"
+    destroy:
+      danger: "Элемент '%{title}' не доступен для удаления"
+    set_error: "Минимально допустимая длина: %{length} символа"
+    index:
+      title: "Должностная номенклатура"
+      new_nomenclature: "Добавить новую запись"
+    nomenclature:
+      new_nomenclature_for_element: "Добавить новую запись в '%{title}'"
+      confirm: "Действительно удалить номенклатурную единицу: %{title}?"
+  groups:
+    group_title:
+      title: "Группы"
+    form:
+      parent: "Вышестоящий"
+      title: "Наименование"
+      close: "Отмена"
+      submit: "Сохранить"
+    new:
+      title: "Добавление новой группы"
+    show:
+      title: "Просмотр группы"
+    create:
+      title: "Добавление новой группы"
+    edit:
+      title: "Редактирование группы"
+    update:
+      title: "Редактирование группы"
+    destroy:
+      danger: "Элемент '%{title}' не доступен для удаления"
+    set_error: "Минимально допустимая длина: %{length} символа"
+    index:
+      title: "Список групп"
+      new_group: "Добавить новую группу"
+    group:
+      new_group_for_element: "Добавить новую запись в '%{title}'"
+      confirm: "Действительно удалить группу: %{title}?"
+  roles:
+    role_title:
+      title: "Роль"
+    form:
+      name: "Наименование роли"
+      close: "Отмена"
+      submit: "Сохранить"
+    new:
+      title: "Добавление новой роли"
+    show:
+      title: "Просмотр роли"
+    create:
+      title: "Добавление новой роли"
+    edit:
+      title: "Редактирование роли"
+    update:
+      title: "Редактирование роли"
+    destroy:
+      danger: "Элемент '%{name}' не доступен для удаления"
+    set_error: "Попытка волшебства"
+    set_error_double: "Попытка создания дубликата"
+    set_error_length: "Минимально допустимая длина: %{length} символа"
+    index:
+      title: "Список ролей"
+      new_role: "Добавить новую роль"
+    role:
+      confirm: "Действительно удалить роль: %{name}?"
+  structures:
+    structure_title:
+      title: "Рабочие точки"
+    form:
+      parent: "Вышестоящий"
+      name: "Наименование"
+      address: "Адрес"
+      close: "Отмена"
+      submit: "Сохранить"
+    new:
+      title: "Добавление новой структурной единицы"
+    show:
+      title: "Просмотр"
+    create:
+      title: "Добавление новой структурной единицы"
+    edit:
+      title: "Редактирование"
+    update:
+      title: "Редактирование"
+    destroy:
+      danger: "Элемент '%{title}' не доступен для удаления"
+    set_error: "Минимально допустимая длина: %{length} символа"
+    index:
+      title: "Точки"
+      new_structure: "Добавить новую запись"
+    structure:
+      new_structure_for_element: "Добавить новую запись в '%{name}'"
+      confirm: "Действительно удалить: %{name}?"
+    
+  

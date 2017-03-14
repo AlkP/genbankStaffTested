@@ -9,13 +9,13 @@
     = render 'common/flash'
 
     %div.form-group
-      %label.col-sm-4.control-label.some{ for: 'inputRoleName' }
-        Наименование роли
+      %label.col-sm-4.control-label{ for: 'inputRoleName' }
+        = t('.name')
       %div.col-sm-8
-        = f.text_field :name, autofocus: true, html: { class: 'form-control', id: 'inputRoleName', type: 'rolename' }
+        = f.text_field :name, autofocus: true, :class => "form-control", :id => "inputRoleName", :type => "rolename"
   %div.modal-footer
-    %button.btn.btn-default.some{ type: 'button', 'data-dismiss': 'modal' }
-      Отмена
+    %button.btn.btn-default{ type: 'button', 'data-dismiss': 'modal' }
+      = t('.close')
     - if action_name != 'show'
-      %button.btn.btn-primary.some{ type: 'button submit' }
-        Сохранить
+      %button.btn.btn-primary{ type: 'button submit' }
+        = t('.submit')

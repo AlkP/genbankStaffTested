@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
-  PAUSE_FOR_RESPONSE = 3
+  PAUSE_FOR_RESPONSE = 1
   
   protected
   

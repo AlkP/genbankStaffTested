@@ -1,24 +1,24 @@
 
-%h1
-  = t('.title')
+%h1 
+  = t('.title') 
   (
   = link_to image_tag('plus.png', border: 0, size: '36x36'), 
-            new_role_path,
+            new_user_path,
             class: 'btn btn-default',
-            title: t('.new_role'),
+            title: t('.new_user'),
             remote: true, 
             onclick: "$('#modal-container-110063').modal('show');"
   )
 %br
 %table.table.table-striped
   %thead
-    = render 'role_title'
-  %tbody.tbody-roles
-    = render @roles
+    = render 'user_title'
+  %tbody.tbody-users
+    = render @users
 
 %br
 
-= paginate @roles, :theme => 'twitter-bootstrap-3',
+= paginate @users, :theme => 'twitter-bootstrap-3',
                    :pagination_class => "pagination-sm"
 
 %br

@@ -11,21 +11,27 @@
     %ul.some{ class: 'nav navbar-nav'}
       %li.User.dropdown
         %a{ href: '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' }
-          Управление пользователями
+          = t('.user_control')
           %strong{ class: 'caret' }
         %ul.dropdown-menu
           %li
-            %a{ href: users_path } Пользователи
+            %a{ href: users_path }
+              = t('.users')
           %li
-            %a{ href: structures_path } Структура организации
+            %a{ href: structures_path }
+              = t('.structures')
           %li
-            %a{ href: nomenclatures_path } Должностная номенклатура
+            %a{ href: nomenclatures_path }
+              = t('.nomenclatures')
           %li
-            %a{ href: groups_path } Группы пользователей
+            %a{ href: groups_path }
+              = t('.groups')
           %li
-            %a{ href: roles_path } Роли пользователей
+            %a{ href: roles_path }
+              = t('.roles')
       %li.Test
-        %a{ href: '#' } Тесты
+        %a{ href: '#' }
+          = t('.tests')
     = render 'layouts/search_form'
     
     %ul{ class: 'nav navbar-nav navbar-right' }
@@ -36,10 +42,13 @@
             %strong{ class: 'caret' }
           %ul.dropdown-menu
             %li
-              %a{ href: '#' } Сменить пароль
+              = link_to t('.change_password'),
+                edit_password_path(current_user),
+                remote: true,
+                onclick: "$('#modal-container-110063').modal('show');"
             %li.divider
             %li
-              = link_to 'Выйти', destroy_user_session_path, method: :delete
+              = link_to t('.logout'), destroy_user_session_path, method: :delete
       - else
         %li
-          = link_to 'Вход в систему', new_user_session_path
+          = link_to t('.login'), new_user_session_path

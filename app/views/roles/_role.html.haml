@@ -15,4 +15,4 @@
       = link_to image_tag("delete.png", border: 0, size: '24x24'),
           role_path(role, :page => params[:page]),
           :method => :delete, 
-          :data => { :confirm => "Действительно удалить роль: #{role.name}?" }
+          :data => { :confirm => t('.confirm', name: role.name) }

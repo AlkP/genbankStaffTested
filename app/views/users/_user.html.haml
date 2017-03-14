@@ -1,0 +1,31 @@
+%tr
+  %td= user.id
+  %td
+    = link_to user.username, 
+          user,
+          remote: true, 
+          onclick: "$('#modal-container-110063').modal('show');",
+          'text-indent': '20px'
+  %td
+    = user.sign_in_count
+  %td
+    = user.last_sign_in_at
+  %td
+    = user.last_sign_in_ip
+  %td
+    = link_to image_tag("pen.png", border: 0, size: '24x24'), 
+          edit_user_path(user), 
+          remote: true, 
+          onclick: "$('#modal-container-110063').modal('show');"
+  %td
+    - if user.avalable_to_delete?
+      = link_to image_tag("delete.png", border: 0, size: '24x24'),
+          user_path(user, :page => params[:page]),
+          :method => :delete, 
+          :data => { :confirm => t('.confirm', username: user.username) }
+  %td
+    -if admin? && user.id != 1
+      = link_to image_tag("lock.png", border: 0, size: '24x24'),
+        edit_password_path(user.id),
+        remote: true,
+        onclick: "$('#modal-container-110063').modal('show');"

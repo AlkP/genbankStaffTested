@@ -9,23 +9,23 @@
     = render 'common/flash'
 
     %div.form-group
-      %label.col-sm-4.control-label.some{ for: 'inputStructureIdName' }
-        Родитель
+      %label.col-sm-4.control-label{ for: 'inputStructureIdName' }
+        = t('.parent')
       %div.col-sm-8
-        = f.collection_select :structure_id, @parents, :id, :name, include_blank: true, hide_label: true, :selected => @structure.structure_id
+        = f.collection_select :structure_id, @parents, :id, :name, { include_blank: true, hide_label: true, :selected => @structure.structure_id }, { :class => "form-control" }
     %div.form-group
-      %label.col-sm-4.control-label.some{ for: 'inputStructureName' }
-        Наименование
+      %label.col-sm-4.control-label{ for: 'inputStructureName' }
+        = t('.name')
       %div.col-sm-8
-        = f.text_field :name, autofocus: true, html: { class: 'form-control', id: 'inputStructureName', type: 'structureame' }
+        = f.text_field :name, autofocus: true, :class => "form-control", :id => "inputStructureName", :type => "structureame"
     %div.form-group
-      %label.col-sm-4.control-label.some{ for: 'inputStructureAddress' }
-        Адрес
+      %label.col-sm-4.control-label{ for: 'inputStructureAddress' }
+        = t('.address')
       %div.col-sm-8
-        = f.text_field :address, html: { class: 'form-control', id: 'inputStructureAddress', type: 'structureaddress' }
+        = f.text_field :address, :class => "form-control", :id => "inputStructureAddress", :type => "structureaddress"
   %div.modal-footer
-    %button.btn.btn-default.some{ type: 'button', 'data-dismiss': 'modal' }
-      Отмена
+    %button.btn.btn-default{ type: 'button', 'data-dismiss': 'modal' }
+      = t('.close')
     - if action_name != 'show'
-      %button.btn.btn-primary.some{ type: 'button submit' }
-        Сохранить
+      %button.btn.btn-primary{ type: 'button submit' }
+        = t('.submit')

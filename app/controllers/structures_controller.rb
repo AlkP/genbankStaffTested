@@ -1,6 +1,7 @@
 class StructuresController < ApplicationController
   before_action :authenticate_user!
-  before_action { flash.clear }
+  before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
+  before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :find_structure, only: [ :show, :edit, :destroy, :update ]
   before_action :find_parent, only: [ :new, :show, :edit, :create ]
@@ -13,13 +14,11 @@ class StructuresController < ApplicationController
   end
   
   def new
-    @title = 'Добавление новой точки'
     @structure = Structure.new
     @structure.structure_id = params[:id].to_i
   end
   
   def show
-    @title = 'Просмотр точки'
   end
   
   def create
@@ -27,14 +26,12 @@ class StructuresController < ApplicationController
     if @structure.name.size >= MINIMAL_NAME_SIZE && @structure.save
       redirect_to structures_path
     else
-      @title = 'Добавление новой точки'
       flash[:danger] = set_error(@structure)
       render 'new'
     end
   end
   
   def edit
-    @title = 'Редактирование точки'
   end
   
   def update
@@ -42,7 +39,6 @@ class StructuresController < ApplicationController
     if structure.name.size >= MINIMAL_NAME_SIZE && @structure.update(structures_params)
       redirect_to structures_path
     else
-      @title = 'Редактирование роли'
       flash[:danger] = set_error(structure)
       render 'edit'
     end
@@ -59,6 +55,10 @@ class StructuresController < ApplicationController
   
   private
   
+  def set_title
+    @title = t('.title')
+  end
+  
   def find_parent
     @parents = Structure.all
     @parents = @parents.where("id NOT IN (#{params[:id]})") unless params[:id].nil? || action_name == "new" || action_name == "create"
@@ -73,10 +73,14 @@ class StructuresController < ApplicationController
   end
   
   def set_error(structure)
-    return "Минимально допустимая длина: #{MINIMAL_NAME_SIZE} символа" if structure.name.size < MINIMAL_NAME_SIZE
+    return t('.set_error', length: MINIMAL_NAME_SIZE) if structure.name.size < MINIMAL_NAME_SIZE
   end
   
   def sleep_now
     sleep PAUSE_FOR_RESPONSE
+  end
+  
+  def flash_clear
+    flash.clear
   end
 end

@@ -1,6 +1,7 @@
 class NomenclaturesController < ApplicationController
   before_action :authenticate_user!
-  before_action { flash.clear }
+  before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
+  before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :find_nomenclature, only: [ :show, :edit, :destroy, :update ]
   before_action :find_parent, only: [ :new, :show, :edit, :create ]
@@ -13,13 +14,11 @@ class NomenclaturesController < ApplicationController
   end
   
   def new
-    @title = 'Добавление новой должности'
     @nomenclature = Nomenclature.new
     @nomenclature.nomenclature_id = params[:id].to_i
   end
   
   def show
-    @title = 'Просмотр должности'
   end
   
   def create
@@ -27,14 +26,12 @@ class NomenclaturesController < ApplicationController
     if @nomenclature.title.size >= MINIMAL_NAME_SIZE && @nomenclature.save
       redirect_to nomenclatures_path
     else
-      @title = 'Добавление новой должности'
       flash[:danger] = set_error(@nomenclature)
       render 'new'
     end
   end
   
   def edit
-    @title = 'Редактирование роли'
   end
   
   def update
@@ -42,7 +39,6 @@ class NomenclaturesController < ApplicationController
     if nomenclature.title.size >= MINIMAL_NAME_SIZE && @nomenclature.update(nomenclatures_params)
       redirect_to nomenclatures_path
     else
-      @title = 'Редактирование роли'
       flash[:danger] = set_error(nomenclature)
       render 'edit'
     end
@@ -52,12 +48,16 @@ class NomenclaturesController < ApplicationController
     if @nomenclature.avalable_to_delete?
       @nomenclature.destroy
     else
-      flash[:danger] = "Элемент не доступен для удаления"
+      flash[:danger] = t('.danger', title: @nomenclature.title )
     end
     redirect_to nomenclatures_path( :page => params[:page] )
   end
   
   private
+  
+  def set_title
+    @title = t('.title')
+  end
   
   def find_parent
     @parents = Nomenclature.all
@@ -73,10 +73,14 @@ class NomenclaturesController < ApplicationController
   end
   
   def set_error(nomenclature)
-    return "Минимально допустимая длина: #{MINIMAL_NAME_SIZE} символа" if nomenclature.title.size < MINIMAL_NAME_SIZE
+    return t('.set_error', length: MINIMAL_NAME_SIZE ) if nomenclature.title.size < MINIMAL_NAME_SIZE
   end
   
   def sleep_now
     sleep PAUSE_FOR_RESPONSE
+  end
+  
+  def flash_clear
+    flash.clear
   end
 end

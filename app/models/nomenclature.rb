@@ -1,5 +1,5 @@
 class Nomenclature < ApplicationRecord
-  has_many :user
+  has_many :users
   
   validates :title, presence: true
   validates :title, length: { minimum: 6 }

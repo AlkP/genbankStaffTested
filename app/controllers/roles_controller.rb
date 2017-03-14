@@ -1,6 +1,7 @@
 class RolesController < ApplicationController
   before_action :authenticate_user!
-  before_action { flash.clear }
+  before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
+  before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :find_role, only: [ :show, :edit, :destroy, :update ]
   
@@ -12,12 +13,10 @@ class RolesController < ApplicationController
   end
   
   def new
-    @title = 'Добавление новой роли'
     @role = Role.new
   end
   
   def show
-    @title = 'Просмотр роли'
   end
   
   def create
@@ -25,33 +24,38 @@ class RolesController < ApplicationController
     if @role.name.size >= MINIMAL_NAME_SIZE && @role.name_allowable? && @role.save
       redirect_to roles_path
     else
-      @title = 'Добавление новой роли'
       flash[:danger] = set_error(@role)
       render 'new'
     end
   end
   
   def edit
-    @title = 'Редактирование роли'
   end
   
   def update
     role = Role.new(roles_params)
-    if role.name.size >= MINIMAL_NAME_SIZE && role.name_allowable? && @role.update(roles_params)
+    if role.name.size >= MINIMAL_NAME_SIZE && role.name_allowable? && @role.avalable_to_edit? && @role.update(roles_params)
       redirect_to roles_path
     else
-      @title = 'Редактирование роли'
       flash[:danger] = set_error(role)
       render 'edit'
     end
   end
   
   def destroy
-    @role.destroy
+    if @role.avalable_to_edit?
+      @role.destroy
+    else
+      flash[:danger] = t('.danger', name: @role.name )
+    end
     redirect_to roles_path( :page => params[:page] )
   end
   
   private
+  
+  def set_title
+    @title = t('.title')
+  end
   
   def roles_params
     params.require(:role).permit( :name)
@@ -62,11 +66,16 @@ class RolesController < ApplicationController
   end
   
   def set_error(role)
-    return 'Попытка создания дубликата' unless role.name_allowable?
-    return "Минимально допустимая длина: #{MINIMAL_NAME_SIZE} символа" if role.name.size < MINIMAL_NAME_SIZE
+    return t('.set_error_double') unless role.name_allowable?
+    return t('.set_error_length', length: MINIMAL_NAME_SIZE) if role.name.size < MINIMAL_NAME_SIZE
+    return t('.set_error')
   end
   
   def sleep_now
     sleep PAUSE_FOR_RESPONSE
+  end
+  
+  def flash_clear
+    flash.clear
   end
 end

@@ -1,26 +1,27 @@
 %div.form-group
   %div.col-sm-4
   %div.col-sm-8
-    %h3.text-primary Консоль входа
+    %h3.text-primary 
+      = t('.title')
     %br
 
 = form_for(resource, as: resource_name, 
           url: session_path(resource_name), 
           html: { class: 'form-horizontal', role: 'form' } ) do |f|
   %div.form-group
-    %label.col-sm-4.control-label.some{ for: 'inputUserName' }
-      Имя пользователя
+    %label.col-sm-4.control-label{ for: 'inputUserName' }
+      = t('.username')
     %div.col-sm-8
       = f.text_field :username, autofocus: true, html: { class: 'form-control', id: 'inputUserName', type: 'username' }
   %div.form-group
-    %label.col-sm-4.control-label.some{ for: 'inputPassword' }
-      Пароль
+    %label.col-sm-4.control-label{ for: 'inputPassword' }
+      = t('.password')
     %div.col-sm-8
       = f.password_field :password, autocomplete: "off", html: { class: 'form-control inputPassword', type: 'password' }
   %div.form-group
     %div.col-sm-4.control-label
     %div.col-sm-8
-      %button.btn.btn-default.some{ type: 'submit' }
-        Вход
+      %button.btn.btn-default{ type: 'submit' }
+        = t('.submit')
 
 = render 'devise/shared/links'

@@ -19,7 +19,7 @@
   %td
     = link_to image_tag('plus.png', border: 0, size: '20x20'), 
             new_structure_path(:id => structure.id),
-            title: 'Добавить новую запись',
+            title: t('.new_structure_for_element', name: structure.name),
             remote: true, 
             onclick: "$('#modal-container-110063').modal('show');"
   %td
@@ -32,7 +32,7 @@
       = link_to image_tag("delete.png", border: 0, size: '24x24'),
           structure_path(structure, :page => params[:page]),
           :method => :delete, 
-          :data => { :confirm => "Действительно удалить структурную единицу: #{structure.name}?" }
+          :data => { :confirm => t('.confirm', name: structure.name) }
 
 - if Structure.where("structure_id = #{structure.id}").size > 0
   - count = count.blank? ? 0 : count + 1

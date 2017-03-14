@@ -1,0 +1,16 @@
+- if action_name != 'show'
+  %tr
+    %div.add-new-group
+      %td
+      %td= link_to image_tag('plus.png', border: 0, size: '20x20'), 
+                    "#",
+                    title: t('.new_group_for_user', name: @user.initials),
+                    remote: true
+- Group.all.each do |g|
+  %tr
+    %td= g.title
+    %td
+      - if action_name != 'show'
+        = link_to image_tag("delete.png", border: 0, size: '24x24'),
+                  "#",
+                  :method => :delete

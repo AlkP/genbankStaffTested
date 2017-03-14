@@ -1,5 +1,5 @@
 class Structure < ApplicationRecord
-  has_many :user
+  has_many :users
   
   validates :name, presence: true
   validates :name, length: { minimum: 4 }
