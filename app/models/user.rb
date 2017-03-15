@@ -8,6 +8,9 @@ class User < ApplicationRecord
   belongs_to :nomenclature, optional: true
   belongs_to :structure, optional: true
   
+  has_many :user_groups
+  has_many :groups, through: :user_groups
+  
   paginates_per 15
   
   def admin?

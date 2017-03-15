@@ -1,16 +1,23 @@
 - if action_name != 'show'
-  %tr
-    %div.add-new-group
+  %tr.group-user-plus{ hidden: true }
+    = form_for :new_group, url: "add_group" do |u_g|
       %td
-      %td= link_to image_tag('plus.png', border: 0, size: '20x20'), 
-                    "#",
-                    title: t('.new_group_for_user', name: @user.initials),
-                    remote: true
-- Group.all.each do |g|
+        = u_g.collection_select :group_id, @groups, :id, :title, { include_blank: true }, {:class => "form-control"}
+      %td
+        = image_submit_tag "galochka.png", border: 0, size: '20x20'
+  %tr.group-user-add
+    %td
+    %td
+      = link_to image_tag('plus.png', border: 0, size: '20x20'),
+                "#",
+                remote: true,
+                :onclick => "$('.group-user-plus').show();$('.group-user-add').hide();"
+- @user_groups.each do |g|
   %tr
-    %td= g.title
+    %td= g.group.title
     %td
       - if action_name != 'show'
         = link_to image_tag("delete.png", border: 0, size: '24x24'),
-                  "#",
-                  :method => :delete
+                  delete_group_path(g),
+                  :method => :delete,
+                  remote: true

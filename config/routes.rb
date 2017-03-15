@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get "/edit_password/:id" => "users#edit_password", as: "edit_password"
   patch "/update_password/:id" => "users#update_password", as: "update_password"
+  # post "/user/:user_id/group"=> "users#add_group", as: "add_group"
+  delete "/user/:user_group_id/group"=> "users#delete_group", as: "delete_group"
   
   root 'home#show'
 

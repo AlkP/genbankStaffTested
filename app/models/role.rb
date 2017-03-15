@@ -1,5 +1,7 @@
 class Role < ApplicationRecord
-  has_many :users
+  
+  has_many :user_groups
+  has_many :users, through: :user_groups
   
   validates :name, presence: true
   validates :name, length: { minimum: 4 }

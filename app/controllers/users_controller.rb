@@ -3,8 +3,9 @@ class UsersController < ApplicationController
   before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
   before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :set_user, only: [ :show, :edit, :destroy, :update, :edit_password, :update_password ]
-  before_action :set_variable, only: [ :new, :show, :edit, :update ]
+  before_action :set_variable, only: [ :new, :show, :edit, :update, :delete_group ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
+  before_action :set_for_edit_form, only: [ :show, :edit ]
 
   MINIMAL_NAME_SIZE = 4
   
@@ -20,16 +21,29 @@ class UsersController < ApplicationController
   end
   
   def edit
-    
   end
   
   def update
-    if @user.update(users_params)
-      redirect_to users_path
+    if params[:new_group][:group_id].blank?
+      if @user.update(users_params)
+        redirect_to users_path
+      else
+        flash[:danger] = @user.errors.full_messages.to_sentence
+        render 'edit'
+      end
     else
-      flash[:danger] = @user.errors.full_messages.to_sentence
+      UserGroup.create(user_id: params[:id], group_id: params[:new_group][:group_id])
+      set_for_edit_form
       render 'edit'
     end
+  end
+  
+  def delete_group
+    user_groups = UserGroup.find("#{params[:user_group_id]}")
+    @user = User.find(user_groups.user_id)
+    user_groups.destroy
+    set_for_edit_form
+    render 'edit'
   end
   
   def edit_password
@@ -73,7 +87,17 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
   
+  def add_group
+    redirect_to users_path
+  end
+  
   private
+  
+  def set_for_edit_form
+    @new_group = UserGroup.new
+    @user_groups = UserGroup.where("user_id = #{@user.id}")
+    @groups = Group.where.not(id: @user_groups.map(&:group_id))
+  end
   
   def can_current_user_change_password_this_user?(user)
     return (user.id != 1 && ((current_user.id == user.id) || admin?)) ? true : false
