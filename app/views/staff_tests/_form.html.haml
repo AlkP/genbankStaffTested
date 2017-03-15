@@ -1,0 +1,4 @@
+= form_for @staff_test, html: { class: 'form-horizontal', role: 'form' } do |f|
+  = render 'common/flash'
+  %div.form-group
+    = f.text_area :description, class: "tinymce"

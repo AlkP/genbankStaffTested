@@ -1,0 +1,2 @@
+class StaffTest < ApplicationRecord
+end

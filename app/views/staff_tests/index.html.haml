@@ -1,0 +1,24 @@
+
+%h1
+  = t('.title')
+  (
+  = link_to image_tag('plus.png', border: 0, size: '36x36'), 
+            new_staff_test_path,
+            class: 'btn btn-default',
+            title: t('.new_staff_test')
+  )
+%br
+%table.table.table-striped
+  %thead
+    = render 'staff_test_title'
+  %tbody.tbody-roles
+    = render @staff_tests
+
+%br
+
+= paginate @staff_tests, :theme => 'twitter-bootstrap-3',
+                   :pagination_class => "pagination-sm"
+
+%br
+
+

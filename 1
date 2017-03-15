@@ -34,6 +34,14 @@
                        PATCH  /nomenclatures/:id(.:format)                     nomenclatures#update
                        PUT    /nomenclatures/:id(.:format)                     nomenclatures#update
                        DELETE /nomenclatures/:id(.:format)                     nomenclatures#destroy
+           staff_tests GET    /staff_tests(.:format)                           staff_tests#index
+                       POST   /staff_tests(.:format)                           staff_tests#create
+        new_staff_test GET    /staff_tests/new(.:format)                       staff_tests#new
+       edit_staff_test GET    /staff_tests/:id/edit(.:format)                  staff_tests#edit
+            staff_test GET    /staff_tests/:id(.:format)                       staff_tests#show
+                       PATCH  /staff_tests/:id(.:format)                       staff_tests#update
+                       PUT    /staff_tests/:id(.:format)                       staff_tests#update
+                       DELETE /staff_tests/:id(.:format)                       staff_tests#destroy
        user_structures GET    /users/:user_id/structures(.:format)             structures#index
                        POST   /users/:user_id/structures(.:format)             structures#create
     new_user_structure GET    /users/:user_id/structures/new(.:format)         structures#new
@@ -76,6 +84,7 @@ edit_user_nomenclature GET    /users/:user_id/nomenclatures/:id/edit(.:format) n
                        DELETE /users/:id(.:format)                             users#destroy
          edit_password GET    /edit_password/:id(.:format)                     users#edit_password
        update_password PATCH  /update_password/:id(.:format)                   users#update_password
-    add_group_for_user POST   /user/:user_id/group(.:format)                   user#new_group
+             add_group POST   /user/:user_id/:group_id(.:format)               users#add_group
+          delete_group DELETE /user/:user_group_id/group(.:format)             users#delete_group
                   root GET    /                                                home#show
                        GET    /*other_all_page(.:format)                       home#show

@@ -1,0 +1,2 @@
+module StaffTestsHelper
+end
