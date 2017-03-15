@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
   before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :set_user, only: [ :show, :edit, :destroy, :update, :edit_password, :update_password ]
-  before_action :set_variable, only: [ :new, :show, :edit, :update, :delete_group ]
+  before_action :set_variable, only: [ :new, :show, :edit, :update, :delete_group, :add_group ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :set_for_edit_form, only: [ :show, :edit ]
 
@@ -24,16 +24,10 @@ class UsersController < ApplicationController
   end
   
   def update
-    if params[:new_group][:group_id].blank?
-      if @user.update(users_params)
-        redirect_to users_path
-      else
-        flash[:danger] = @user.errors.full_messages.to_sentence
-        render 'edit'
-      end
+    if @user.update(users_params)
+      redirect_to users_path
     else
-      UserGroup.create(user_id: params[:id], group_id: params[:new_group][:group_id])
-      set_for_edit_form
+      flash[:danger] = @user.errors.full_messages.to_sentence
       render 'edit'
     end
   end
@@ -88,7 +82,10 @@ class UsersController < ApplicationController
   end
   
   def add_group
-    redirect_to users_path
+    @user = User.find(params[:user_id])
+    UserGroup.create(user_id: params[:user_id], group_id: params[:group_id])
+    set_for_edit_form
+    render 'edit'
   end
   
   private
