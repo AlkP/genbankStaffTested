@@ -1,4 +1,5 @@
-%div.form-group.block{ style: "padding:7px 30px; width:100%;  word-wrap:break-word;" }
+%div.form-group.block
   %label.control-label{ for: 'name' }
     = t('.description')
-  = raw @staff_test.description
+  %div.mce-content-body
+    = raw @staff_test.description
