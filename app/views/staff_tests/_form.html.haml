@@ -1,0 +1,50 @@
+// = tinymce_assets
+:javascript
+  tinymce.init({
+    selector: 'textarea',
+    height: 500,
+    menubar: false,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table contextmenu paste code textcolor colorpicker codesample emoticons'
+    ],
+    toolbar: 'undo redo | insert | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image table | forecolor backcolor | codesample emoticons | code',
+    content_css: '//www.tinymce.com/css/codepen.min.css'
+  });
+
+= form_for @staff_test, html: { role: 'form' } do |f|
+  %div.form-group.col-sm-8
+  %div.form-group.col-sm-2
+    = link_to t('.exit'), staff_tests_path, {class: "btn btn-primary" }
+  %div.form-group.col-sm-2
+    %button.btn.btn-primary{ type: 'button submit' }
+      = t('.submit')
+  %div.form-group
+    %label.control-label{ for: 'name' }
+      = t('.name')
+    = f.text_field :name, autofocus: true, :class => "form-control", :id => "name", :type => "name"
+  %div.form-group
+    %label.control-label{ for: 'name' }
+      = t('.description')
+    = f.text_area :description, :class => "tinymce", id: "element",  :rows => 20, :cols => 140
+
+  
+:javascript
+  $( document ).ready(function() {
+    window.onload = function(){
+    	document.getElementById("element").onkeyup = function(){
+    		var getText = this.value;
+    		var getRegs = getText.match(/^.*(\r\n|\n|$)/gim);
+    		var setText = false;
+    		for(var i = 0; i < getRegs.length; i++){
+    			getText = getRegs[i].replace(/\r|\n/g, "");
+    			setText += getText.length ? Math.ceil(getText.length / 50) : 1;
+    		}
+    		this.rows = setText;
+    	};
+    };
+  });
+
+// = tinymce :language => "ru"
+

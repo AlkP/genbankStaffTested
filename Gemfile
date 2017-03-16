@@ -8,6 +8,8 @@ gem "twitter-bootstrap-rails"
 gem 'devise'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 
 # for Heroku
 gem 'rails_12factor'

@@ -1,0 +1,7 @@
+%tr
+  %td= staff_test.id
+  %td
+    = link_to staff_test.name, 
+          edit_staff_test_path(staff_test)
+  %td
+    = link_to image_tag("loupe.png", border: 0, size: '24x24'), staff_test_path(staff_test)

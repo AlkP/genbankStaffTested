@@ -222,6 +222,10 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.6)
+    tinymce-rails (4.5.5)
+      railties (>= 3.1.1)
+    tinymce-rails-langs (4.20160310)
+      tinymce-rails (~> 4.1, >= 4.1.10)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -272,6 +276,8 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   therubyracer
+  tinymce-rails
+  tinymce-rails-langs
   turbolinks (~> 5)
   twitter-bootstrap-rails
   tzinfo-data
@@ -282,4 +288,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.13.7
+   1.14.5

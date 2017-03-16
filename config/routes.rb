@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :groups
   resources :nomenclatures
+  resources :staff_tests
     
   resources :users do
     resources :structures
