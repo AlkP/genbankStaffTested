@@ -33,6 +33,7 @@ class StaffTestsController < ApplicationController
   end
   
   def staff_tests_params
+    params[:staff_test][:name] = 'Наименование' if params[:staff_test].nil? || params[:staff_test][:name].blank?
     params.require(:staff_test).permit( :name, :description )
   end
 end
