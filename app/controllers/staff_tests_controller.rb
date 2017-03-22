@@ -1,5 +1,5 @@
 class StaffTestsController < ApplicationController
-  before_action :set_staff_test, only: [ :show, :edit ]
+  before_action :set_staff_test, only: [ :show, :edit, :update ]
   
   def index
     @staff_tests = StaffTest.all.page(params[:page])
@@ -22,8 +22,8 @@ class StaffTestsController < ApplicationController
   end
   
   def update
-    staff_test = StaffTest.update(staff_tests_params)
-    redirect_to staff_test_path(staff_test)
+    staff_test = @staff_test.update(staff_tests_params)
+    redirect_to staff_test_path(@staff_test)
   end
   
   private
