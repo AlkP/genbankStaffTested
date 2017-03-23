@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/PerfectlyNormal/tinymce-rails-imageupload.git
+  revision: 230416b793ad89df3618eee9c61770d652ff86d7
+  specs:
+    tinymce-rails-imageupload (4.0.17.beta)
+      railties (>= 3.2, < 6)
+      tinymce-rails (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -243,9 +251,6 @@ GEM
     tilt (2.0.6)
     tinymce-rails (4.5.5)
       railties (>= 3.1.1)
-    tinymce-rails-imageupload (4.0.17.beta)
-      railties (>= 3.2, < 6)
-      tinymce-rails (~> 4.0)
     tinymce-rails-langs (4.20160310)
       tinymce-rails (~> 4.1, >= 4.1.10)
     turbolinks (5.0.1)
@@ -301,7 +306,7 @@ DEPENDENCIES
   sqlite3
   therubyracer
   tinymce-rails
-  tinymce-rails-imageupload (~> 4.0.0.beta)
+  tinymce-rails-imageupload!
   tinymce-rails-langs
   turbolinks (~> 5)
   twitter-bootstrap-rails
