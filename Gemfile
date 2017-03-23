@@ -9,7 +9,7 @@ gem 'devise'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 
-gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
