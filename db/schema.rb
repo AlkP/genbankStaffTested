@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315132416) do
+ActiveRecord::Schema.define(version: 20170323073847) do
 
   create_table "groups", force: :cascade do |t|
     t.integer  "group_id"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20170315132416) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_groups_on_group_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "alt",               default: ""
+    t.string   "hint",              default: ""
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "nomenclatures", force: :cascade do |t|

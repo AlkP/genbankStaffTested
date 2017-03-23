@@ -22,8 +22,19 @@ class StaffTestsController < ApplicationController
   end
   
   def update
+    puts "*" * 100
+    params.each do |key, value|
+      if value == 'on'
+        puts "#{key}: #{value}"
+      end
+    end
+    puts "*" * 100
     staff_test = @staff_test.update(staff_tests_params)
-    redirect_to staff_test_path(@staff_test)
+    if staff_test
+      redirect_to staff_test_path(@staff_test)
+    else
+      render edit
+    end
   end
   
   private

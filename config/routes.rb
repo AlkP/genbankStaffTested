@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  post '/tinymce_assets' => 'tinymce_assets#create'
+  
   devise_for :users
   
   resources  :structures
