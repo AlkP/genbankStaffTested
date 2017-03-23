@@ -246,6 +246,8 @@ GEM
     tinymce-rails-imageupload (4.0.17.beta)
       railties (>= 3.2, < 6)
       tinymce-rails (~> 4.0)
+    tinymce-rails-langs (4.20160310)
+      tinymce-rails (~> 4.1, >= 4.1.10)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -298,7 +300,9 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   therubyracer
+  tinymce-rails
   tinymce-rails-imageupload (~> 4.0.0.beta)
+  tinymce-rails-langs
   turbolinks (~> 5)
   twitter-bootstrap-rails
   tzinfo-data
