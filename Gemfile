@@ -11,6 +11,8 @@ gem 'bootstrap-kaminari-views'
 
 gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
+
 # gem 'tinymce-rails'
 # gem 'tinymce-rails-langs'
 
