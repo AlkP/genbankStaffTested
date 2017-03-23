@@ -13,8 +13,8 @@ gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupl
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 
-gem 'tinymce-rails'
-gem 'tinymce-rails-langs'
+# gem 'tinymce-rails'
+# gem 'tinymce-rails-langs'
 
 # for Heroku
 gem 'rails_12factor'
