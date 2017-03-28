@@ -1,8 +1,17 @@
-%div.form-group.block
-  %label.control-label{ for: 'name' }
-    = t('.description')
-  %div.mce-content-body
-    = raw @staff_test.description
+%div.form-group
+  %div.form-group.col-sm-8
+  %div.form-group.col-sm-2
+    = link_to t('.exit'), staff_tests_path, {class: "btn btn-primary" }
+  %div.form-group.col-sm-2
+  %div.form-group.col-sm-12
+    %label.control-label{ for: 'name' }
+      = t('.name')
+    = @staff_test.name
+  %div.form-group.col-sm-12
+    %label.control-label{ for: 'name' }
+      = t('.description')
+    %div.mce-content-body
+      = raw @staff_test.description
 
 :javascript
   Prism.highlightAll();  // Обновление красивых стилей для вставок с кодом

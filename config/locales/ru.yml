@@ -167,5 +167,19 @@ ru:
     structure:
       new_structure_for_element: "Добавить новую запись в '%{name}'"
       confirm: "Действительно удалить: %{name}?"
-    
+  staff_tests:
+    staff_test_title:
+      title: "Наименование теста"
+    index:
+      title: "Список тестов"
+      new_staff_test: "Новый тест"
+    form:
+      name: "Наименование"
+      description: "Описание"
+      exit: "Назад"
+      submit: "Подтвердить"
+    show:
+      name: "Наименование: "
+      description: "Описание"
+      exit: "Назад"
   
