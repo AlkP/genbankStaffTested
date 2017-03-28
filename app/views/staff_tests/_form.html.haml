@@ -4,22 +4,29 @@
     selector: 'textarea',
     height: 500,
     menubar: false,
+    theme: 'modern',
+    apply_source_formatting: false,
+    remove_linebreaks : false,
+    // font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+    fontsize_formats: '8pt 10pt 11pt 12pt 14pt 18pt 24pt 36pt',
+    language: 'ru_RU',
     plugins: [
       'advlist autolink lists link image charmap print preview anchor',
       'searchreplace visualblocks code fullscreen',
       'insertdatetime media table contextmenu paste code textcolor colorpicker codesample emoticons uploadimage'
     ],
-    toolbar: 'undo redo | insert | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link table image uploadimage | forecolor backcolor | codesample emoticons | code'
+    toolbar1: 'fontselect fontsizeselect | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify',
+    toolbar2: 'undo redo | insert | bullist numlist outdent indent | link table image uploadimage | forecolor backcolor | codesample emoticons | visualblocks code'
   });
 
 = form_for @staff_test, html: { role: 'form' } do |f|
   %div.form-group.col-sm-8
-    %label{ class: 'btn btn-info' }
-      %input{ type: 'checkbox', name: 'jopa1', autocomplete: 'off' }
-        Delete
-    %label{ class: 'btn btn-info' }
-      %input{ type: 'checkbox', name: 'jopa2', autocomplete: 'off' }
-        Delete
+    // %label{ class: 'btn btn-info' }
+    //   %input{ type: 'checkbox', name: 'jopa1', autocomplete: 'off' }
+    //     Delete
+    // %label{ class: 'btn btn-info' }
+    //   %input{ type: 'checkbox', name: 'jopa2', autocomplete: 'off' }
+    //     Delete
   %div.form-group.col-sm-2
     = link_to t('.exit'), staff_tests_path, {class: "btn btn-primary" }
   %div.form-group.col-sm-2

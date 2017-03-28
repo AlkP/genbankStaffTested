@@ -278,7 +278,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (~> 2.3)
+  aws-sdk (= 2.8.10)
   bcrypt (~> 3.1.7)
   bootstrap-kaminari-views
   byebug
