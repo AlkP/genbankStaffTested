@@ -1,9 +1,12 @@
 %div.form-group
-  %div.form-group.col-sm-8
+  %div.form-group.col-sm-4
+    = link_to t('.questions_list'), "#", {class: "btn btn-info" }
+  %div.form-group.col-sm-4
+    = link_to t('.access_times'), staff_test_access_times_path(@staff_test), {class: "btn btn-primary" }
+  %div.form-group.col-sm-2
   %div.form-group.col-sm-2
     = link_to t('.exit'), staff_tests_path, {class: "btn btn-primary" }
   %div.form-group.col-sm-2
-    = link_to t('.access_times'), staff_test_access_times_path(@staff_test), {class: "btn btn-primary" }
   %div.form-group.col-sm-12
     %label.control-label{ for: 'name' }
       = t('.name')

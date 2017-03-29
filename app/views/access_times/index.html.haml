@@ -1,10 +1,12 @@
 
 %h1 
+  = link_to image_tag('back.png', border: 0, size: '36x36'), 
+              staff_test_path(@staff_test)
   = t('.title') 
   (
   = link_to image_tag('plus.png', border: 0, size: '36x36'), 
             new_staff_test_access_time_path,
-            class: 'btn btn-default',
+            class: '',
             title: t('.new_access_time'),
             remote: true, 
             onclick: "$('#modal-container-110063').modal('show');"

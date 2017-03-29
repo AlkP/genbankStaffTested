@@ -185,6 +185,7 @@ ru:
       description: "Описание"
       exit: "Назад"
       access_times: "Доступ по времени"
+      questions_list: "Вопросы теста"
   access_times:
     index: 
       title: "Период тестирования"
