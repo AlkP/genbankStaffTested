@@ -1,0 +1,231 @@
+= form_for @access_time, url: staff_test_access_times_path(@staff_test), html: { class: 'form-horizontal', role: 'form', remote: true } do |f|
+  %div.modal-header
+    %button.close.some{ type: 'button', 'data-dismiss': 'modal', 'aria-hidden': 'true' }
+      ×
+    %h4.modal-title#myModalLabel110063
+      = @title
+  %div.modal-body
+  
+    = render 'common/flash'
+    
+    = number_field_tag 'id', @access_time.id, hidden: true
+    
+    %div.panel.panel-default
+      %div.panel-heading
+        %h3.panel-title
+          = t('.work_period')
+    %div.panel-body
+      %div.form-group
+        %label.col-sm-4.control-label{ for: 'inputFrom' }
+          = t('.from')
+        %div.col-sm-8
+          = f.datetime_local_field :from, autofocus: true, :class => "form-control", :id => "inputFrom", onchange: "CheckTimeValue(this);"
+      %div.form-group
+        %label.col-sm-4.control-label{ for: 'inputTo' }
+          = t('.to')
+        %div.col-sm-8
+          = f.datetime_local_field :to, :class => "form-control", :id => "inputTo", onchange: "CheckTimeValue(this);"
+          
+    %div.panel.panel-default
+      %div.panel-heading
+        %h3.panel-title
+          = t('.test_duration')
+          = check_box("time", "test_duration", onclick: 'checkAll();' )
+          ?
+    %div.panel-body.test-duration
+      %div.form-group
+        %label.col-sm-2.control-label{ for: 'inputFrom' }
+          = t('.duration_days')
+        %div.col-sm-2
+          = f.number_field :duration_days, :class => "form-control", :id => "inputDurationDays", MIN: 0, onchange: "checkAll();"
+        %label.col-sm-2.control-label{ for: 'inputFrom' }
+          = t('.duration_hours')
+        %div.col-sm-2
+          = f.number_field :duration_hours, :class => "form-control", :id => "inputDurationHours", MIN: 0, onchange: "checkAll();"
+        %label.col-sm-2.control-label{ for: 'inputFrom' }
+          = t('.duration_minutes')
+        %div.col-sm-2
+          = f.number_field :duration_minutes, :class => "form-control", :id => "inputDurationMinutes", MIN: 0, onchange: "checkAll();"
+      
+          
+    %div.panel.panel-default.test-break-title
+      %div.panel-heading
+        %h3.panel-title
+          = t('.test_break')
+          = f.number_field :break, :id => "inputBreak", MIN: 0, style: "width: 3em", onchange: "checkAll(this);"
+    %div.panel-body.test-break
+      %div.form-group
+        %label.col-sm-10.control-label
+          = t('.break_help')
+      %div.form-group
+        %label.col-sm-2.control-label{ for: 'inputFrom' }
+          = t('.break_days')
+        %div.col-sm-2
+          = f.number_field :break_days, :class => "form-control", :id => "inputBreakDays", MIN: 0, onchange: "checkAll();"
+        %label.col-sm-2.control-label{ for: 'inputFrom' }
+          = t('.break_hours')
+        %div.col-sm-2
+          = f.number_field :break_hours, :class => "form-control", :id => "inputBreakHours", MIN: 0, onchange: "checkAll();"
+        %label.col-sm-2.control-label{ for: 'inputFrom' }
+          = t('.break_minutes')
+        %div.col-sm-2
+          = f.number_field :break_minutes, :class => "form-control", :id => "inputBreakMinutes", MIN: 0, onchange: "checkAll();"
+      %div.form-group.continuous-time-break
+        %label.col-sm-6.control-label{ for: 'inputFrom' }
+          = t('.continuous_time_break')
+        %div.col-sm-6
+          = f.check_box :continuous_time_break, :class => "form-control", :id => "inputContinuousTimeBreak"
+
+
+
+  %div.modal-footer
+    %button.btn.btn-default{ type: 'button', 'data-dismiss': 'modal' }
+      = t('.close')
+    - if action_name != 'show'
+      %button.btn.btn-primary{ type: 'button submit' }
+        = t('.submit')
+        
+:javascript
+
+  if (checkAllDurationValueIsZero()) {
+  } else {
+    $("#time_test_duration").prop("checked", true);
+  }
+  checkAll();
+  
+  function CheckTimeValue(e) {
+    if ($("#inputFrom")[0].value < $("#inputTo")[0].value) {return false;}
+    if (e.id == 'inputFrom') {
+      $("#inputFrom")[0].value = $("#inputTo")[0].value;
+    } else {
+      $("#inputTo")[0].value = $("#inputFrom")[0].value;
+    }
+    return true;
+  }
+
+  function checkAll() {
+    if (checkDurationIsCheked()) {
+      showDurationValueSet();
+    } else {
+      hideDurationValueSet();
+    }
+  }
+  
+  function checkDurationIsCheked() {
+    if ($("#time_test_duration")[0].checked) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  function hideDurationValueSet() {
+    setDurationValueSetIsZero();
+    $(".test-duration").hide();
+    hideBreak();
+  }
+  
+  function setDurationValueSetIsZero() {
+    $("#inputDurationDays")[0].value = 0; 
+    $("#inputDurationHours")[0].value = 0;
+    $("#inputDurationMinutes")[0].value = 0;
+  }
+  
+  function showDurationValueSet() {
+    $(".test-duration").show();
+    checkDurationValueSet();
+  }
+  
+  function checkDurationValueSet() {
+    if (checkAllDurationValueIsZero()) {
+      hideBreak();
+    } else {
+      showBreak();
+    }
+  }
+  
+  function showBreak() {
+    $(".test-break-title").show();
+    checkBreakSet();
+  }
+  
+  function hideBreak() {
+    setBreakIsZero();
+    checkBreakSet();
+    $(".test-break-title").hide();
+  }
+  
+  function setBreakIsZero() {
+    $("#inputBreak")[0].value = 0; 
+  }
+  
+  function checkAllDurationValueIsZero() {
+    if (($("#inputDurationDays")[0].value == 0) 
+      && ($("#inputDurationHours")[0].value == 0) 
+      && ($("#inputDurationMinutes")[0].value == 0)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  function checkBreakSet() {
+    if (checkBreakIsZero()) {
+      hideBreakValue();
+    } else {
+      checkBreakValueSet();
+      showBreakValue();
+    }
+  }
+  
+  function setBreakValueSetIsZero() {
+    $("#inputBreakDays")[0].value = 0; 
+    $("#inputBreakHours")[0].value = 0;
+    $("#inputBreakMinutes")[0].value = 0;
+  }
+  
+  function checkBreakIsZero() {
+    if ($("#inputBreak")[0].value == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  function checkBreakValueSet() {
+    if (checkAllBreakValueIsZero()) {
+      hideContinuousTimeBreak();
+    } else {
+      showContinuousTimeBreak();
+    }
+  }
+  
+  function checkAllBreakValueIsZero() {
+    if (($("#inputBreakDays")[0].value == 0) 
+      && ($("#inputBreakHours")[0].value == 0) 
+      && ($("#inputBreakMinutes")[0].value == 0)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  function showBreakValue() {
+    $(".test-break").show();
+  }
+  
+  function hideBreakValue() {
+    setBreakValueSetIsZero();
+    checkBreakValueSet();
+    $(".test-break").hide();
+  }
+  
+  function showContinuousTimeBreak() {
+    $(".continuous-time-break").show();
+  }
+  
+  function hideContinuousTimeBreak() {
+    $("#inputContinuousTimeBreak").prop("checked", false);
+    $(".continuous-time-break").hide();
+  }
+    

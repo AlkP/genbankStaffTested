@@ -1,7 +1,6 @@
 class RolesController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
-  before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :find_role, only: [ :show, :edit, :destroy, :update ]
   
@@ -52,10 +51,6 @@ class RolesController < ApplicationController
   end
   
   private
-  
-  def set_title
-    @title = t('.title')
-  end
   
   def roles_params
     params.require(:role).permit( :name)

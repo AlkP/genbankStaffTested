@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
-  before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :set_user, only: [ :show, :edit, :destroy, :update, :edit_password, :update_password ]
   before_action :set_variable, only: [ :new, :show, :edit, :update, :delete_group, :add_group ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
@@ -98,10 +97,6 @@ class UsersController < ApplicationController
   
   def can_current_user_change_password_this_user?(user)
     return (user.id != 1 && ((current_user.id == user.id) || admin?)) ? true : false
-  end
-  
-  def set_title
-    @title = t('.title')
   end
   
   def users_params

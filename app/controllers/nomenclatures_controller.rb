@@ -1,7 +1,6 @@
 class NomenclaturesController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
-  before_action :set_title, only: [ :new, :show, :edit, :update, :create ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :find_nomenclature, only: [ :show, :edit, :destroy, :update ]
   before_action :find_parent, only: [ :new, :show, :edit, :create ]
@@ -54,10 +53,6 @@ class NomenclaturesController < ApplicationController
   end
   
   private
-  
-  def set_title
-    @title = t('.title')
-  end
   
   def find_parent
     @parents = Nomenclature.all

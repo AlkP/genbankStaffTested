@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170323073847) do
+ActiveRecord::Schema.define(version: 20170328121620) do
+
+  create_table "access_times", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "from"
+    t.datetime "to"
+    t.integer  "duration_days"
+    t.integer  "duration_hours"
+    t.integer  "duration_minutes"
+    t.integer  "break"
+    t.boolean  "continuous_time_break"
+    t.integer  "break_days"
+    t.integer  "break_hours"
+    t.integer  "break_minutes"
+    t.integer  "staff_test_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["staff_test_id"], name: "index_access_times_on_staff_test_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.integer  "group_id"

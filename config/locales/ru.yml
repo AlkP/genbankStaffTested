@@ -182,4 +182,32 @@ ru:
       name: "Наименование: "
       description: "Описание"
       exit: "Назад"
-  
+      access_times: "Доступ по времени"
+  access_times:
+    index: 
+      title: "Период тестирования"
+      new_access_time: "Добавить новое расписание"
+    access_time_title:
+      title: "период"
+    new:
+      title: "Создание нового расписания"
+    edit:
+      title: "Редактирование расписания"
+    access_time:
+      confirm: "Действительно удалить расписание: с %{from} по %{to}?"
+    form:
+      work_period: "Период тестирования"
+      from: "с"
+      to: "по"
+      test_duration: "Длительность тестирования ограничена по времени:  Да-"
+      duration_days: "дней"
+      duration_hours: "часов"
+      duration_minutes: "минут"
+      break_days: "дней"
+      break_hours: "часов"
+      break_minutes: "минут"
+      test_break: "Количество пауз: "
+      break_help: "Если время не задано, то пауза(ы) не ограничена по времени"
+      continuous_time_break: "Время задано для каждой паузы (если ВЫБРАНО, то время будет сумироваться для всех пауз)"
+      close: "Отмена"
+      submit: "Сохранить"

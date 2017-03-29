@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   post '/tinymce_assets' => 'tinymce_assets#create'
+  patch '/staff_tests/:staff_test_id/access_times' => 'access_times#update'
   
   devise_for :users
   
@@ -8,7 +9,9 @@ Rails.application.routes.draw do
   resources :roles
   resources :groups
   resources :nomenclatures
-  resources :staff_tests
+  resources :staff_tests do
+    resources :access_times
+  end
     
   resources :users do
     resources :structures

@@ -1,0 +1,12 @@
+%tr
+  %td= access_time.id
+  %td
+    = link_to "с #{access_time.from} по #{access_time.to}" , 
+          edit_staff_test_access_time_path(@staff_test, access_time.id),
+          remote: true, 
+          onclick: "$('#modal-container-110063').modal('show');"
+  %td
+    = link_to image_tag("delete.png", border: 0, size: '24x24'),
+        staff_test_access_time_path(@staff_test, access_time.id),
+        :method => :delete, 
+        :data => { :confirm => t('.confirm', from: access_time.from, to:access_time.to) }
