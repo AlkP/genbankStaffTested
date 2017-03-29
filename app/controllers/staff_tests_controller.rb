@@ -1,5 +1,5 @@
 class StaffTestsController < ApplicationController
-  before_action :set_staff_test, only: [ :show, :edit, :update ]
+  before_action :set_staff_test, only: [ :show, :edit, :update, :destroy ]
   
   def index
     @staff_tests = StaffTest.all.page(params[:page])
@@ -13,6 +13,11 @@ class StaffTestsController < ApplicationController
   end
   
   def edit
+  end
+  
+  def destroy
+    @staff_test.destroy
+    redirect_to staff_tests_path
   end
   
   def create

@@ -168,6 +168,8 @@ ru:
       new_structure_for_element: "Добавить новую запись в '%{name}'"
       confirm: "Действительно удалить: %{name}?"
   staff_tests:
+    staff_test:
+      confirm: "Действительно удалить: %{name}?"
     staff_test_title:
       title: "Наименование теста"
     index:
