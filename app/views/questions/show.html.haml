@@ -2,6 +2,7 @@
   %div.col-sm-8.mce-content-body
     %div.btn-group.btn-group-lg
       = link_to t('.back'), staff_test_questions_path(@staff_test), {class: "btn btn-default button" }
+      = link_to t('.edit'), edit_staff_test_question_path(@staff_test, @question.id), {class: "btn btn-default button" }
     %br
     %br
     = raw @question.description

@@ -216,11 +216,17 @@ ru:
       close: "Отмена"
       submit: "Сохранить"
   questions:
+    form:
+      back: "Назад"
+      submit: "Сохранить"
+      description: "Вопрос"
     index:
       title: "Список вопросов для теста: '%{test}'"
     question_title:
       title: "коротко..."
     show:
+      back: "Назад"
+      edit: "Редактировать"
       answers_title: "Ответы"
   answers:
     form:

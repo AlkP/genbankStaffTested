@@ -2,9 +2,7 @@
   %td= question.id
   %td
     = link_to question.description.html_safe[0, 50], 
-          edit_staff_test_question_path(@staff_test, question.id)
-  %td
-    = link_to image_tag("loupe.png", border: 0, size: '24x24'), staff_test_question_path(@staff_test, question.id)
+          staff_test_question_path(@staff_test, question.id)
   %td
     = link_to image_tag("delete.png", border: 0, size: '24x24'),
         staff_test_question_path(@staff_test, question.id),

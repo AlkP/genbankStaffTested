@@ -11,10 +11,10 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    question = Question.new(questions_params)
-    question.staff_test = @staff_test
-    question.save
-    redirect_to staff_test_questions_path(@staff_test)
+    @question = Question.new(questions_params)
+    @question.staff_test = @staff_test
+    @question.save
+    redirect_to staff_test_question_path(@staff_test, @question)
   end
   
   def show
@@ -31,6 +31,11 @@ class QuestionsController < ApplicationController
     else
       render edit
     end
+  end
+  
+  def destroy
+    @question.destroy
+    redirect_to staff_test_questions_path(@staff_test)
   end
   
   private
