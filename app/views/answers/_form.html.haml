@@ -1,0 +1,17 @@
+%hr
+= form_for @answer, html: { role: 'form', remote: true } do |f|
+  = number_field_tag 'answer[question_id]', @question.id, hidden: true
+  %div.form-group
+    %label{ for: "checkboxCorrect" }
+      = t('.correct')
+    = f.check_box :correct, :id => "checkboxCorrect"
+  %div.form-group
+    %label{ for: "inputName" }
+      = t('.name')
+    = f.text_field :name, autofocus: true, :id => "inputName"
+  %br
+  
+  %button.btn.btn-primary{ type: 'button submit' }
+    = t('.submit')
+    
+%hr

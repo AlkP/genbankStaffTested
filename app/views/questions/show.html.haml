@@ -1,0 +1,16 @@
+%div.form-group
+  %div.col-sm-8.mce-content-body
+    %div.btn-group.btn-group-lg
+      = link_to t('.back'), staff_test_questions_path(@staff_test), {class: "btn btn-default button" }
+    %br
+    %br
+    = raw @question.description
+  %div.col-sm-4
+    %h1 
+      = t('.answers_title')
+    %div.form-answer
+    %div.answers-list
+      = render 'answers/index'
+
+:javascript
+  Prism.highlightAll();  // Обновление красивых стилей для вставок с кодом

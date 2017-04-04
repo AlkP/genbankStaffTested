@@ -1,0 +1,26 @@
+
+%h1 
+  = link_to image_tag('back.png', border: 0, size: '36x36'), 
+              staff_test_path(@staff_test)
+  = t('.title', test: @staff_test.name) 
+  (
+  = link_to image_tag('plus.png', border: 0, size: '36x36'), 
+            new_staff_test_question_path(@staff_test),
+            class: '',
+            title: t('.new_question')
+  )
+%br
+%table.table.table-striped
+  %thead
+    = render 'question_title'
+  %tbody.tbody-question
+    = render @questions
+
+%br
+
+= paginate @questions, :theme => 'twitter-bootstrap-3',
+                   :pagination_class => "pagination-sm"
+
+%br
+
+

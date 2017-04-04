@@ -5,17 +5,17 @@ Rails.application.routes.draw do
   
   devise_for :users
   
-  resources  :structures
-  resources :roles
+  resources :answers
+  resources :structures
   resources :groups
   resources :nomenclatures
   resources :staff_tests do
     resources :access_times
+    resources :questions
   end
     
   resources :users do
     resources :structures
-    resources :roles
     resources :groups
     resources :nomenclatures
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328121620) do
+ActiveRecord::Schema.define(version: 20170404113817) do
 
   create_table "access_times", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20170328121620) do
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.index ["staff_test_id"], name: "index_access_times_on_staff_test_id"
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "correct"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -59,10 +68,12 @@ ActiveRecord::Schema.define(version: 20170328121620) do
     t.index ["nomenclature_id"], name: "index_nomenclatures_on_nomenclature_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "questions", force: :cascade do |t|
+    t.text     "description"
+    t.integer  "staff_test_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["staff_test_id"], name: "index_questions_on_staff_test_id"
   end
 
   create_table "staff_tests", force: :cascade do |t|
@@ -95,9 +106,9 @@ ActiveRecord::Schema.define(version: 20170328121620) do
     t.string   "username",           default: "", null: false
     t.string   "encrypted_password", default: "", null: false
     t.string   "initials",           default: "", null: false
+    t.integer  "role"
     t.integer  "structure_id"
     t.integer  "nomenclature_id"
-    t.integer  "role_id"
     t.integer  "sign_in_count",      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -107,7 +118,6 @@ ActiveRecord::Schema.define(version: 20170328121620) do
     t.datetime "updated_at",                      null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["nomenclature_id"], name: "index_users_on_nomenclature_id"
-    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["structure_id"], name: "index_users_on_structure_id"
     t.index ["username"], name: "index_users_on_username", unique: true
   end

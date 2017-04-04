@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   end
   
   def users_params
-    params.require(:user).permit( :username, :email, :structure_id, :nomenclature_id, :role_id, :initials )
+    params.require(:user).permit( :username, :email, :structure_id, :nomenclature_id, :role, :initials )
   end
   
   def user_password
@@ -109,7 +109,6 @@ class UsersController < ApplicationController
   
   def set_variable
     @structures = Structure.all.collect{|n| n.name = parent_structure(n) + n.name; n}
-    @roles = Role.all
     @nomenclatures = Nomenclature.all.collect{|n| n.title = parent_nomenclature(n) + n.title; n}
   end
   

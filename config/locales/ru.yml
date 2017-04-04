@@ -186,6 +186,7 @@ ru:
       exit: "Назад"
       access_times: "Доступ по времени"
       questions_list: "Вопросы теста"
+      edit: "Редактировать"
   access_times:
     index: 
       title: "Период тестирования"
@@ -214,3 +215,16 @@ ru:
       continuous_time_break: "Время задано для каждой паузы (если ВЫБРАНО, то время будет сумироваться для всех пауз)"
       close: "Отмена"
       submit: "Сохранить"
+  questions:
+    index:
+      title: "Список вопросов для теста: '%{test}'"
+    question_title:
+      title: "коротко..."
+    show:
+      answers_title: "Ответы"
+  answers:
+    form:
+      correct: "Верный ответ: "
+      name: "Ответ"
+    answer_title:
+      name: "Ответы"

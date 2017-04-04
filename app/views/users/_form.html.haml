@@ -12,7 +12,7 @@
       %label.col-sm-4.control-label{  for: 'inputStructureIdName' }
         = t('.role')
       %div.col-sm-8
-        = f.collection_select :role_id, @roles, :id, :name, { include_blank: true, hide_label: true, :selected => @user.role_id }, {:class => "form-control"}
+        = f.select :role, User.roles.keys, { include_blank: true, hide_label: true, :selected => @user.role }, {:class => "form-control"}
     %div.form-group
       %label.col-sm-4.control-label{ for: 'inputStructureIdName' }
         = t('.structure')

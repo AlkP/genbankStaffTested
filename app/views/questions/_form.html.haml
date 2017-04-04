@@ -1,4 +1,10 @@
 // = tinymce_assets
+// %label{ class: 'btn btn-info' }
+//   %input{ type: 'checkbox', name: 'jopa1', autocomplete: 'off' }
+//     Delete
+// %label{ class: 'btn btn-info' }
+//   %input{ type: 'checkbox', name: 'jopa2', autocomplete: 'off' }
+//     Delete
 :javascript
   tinymce.init({
     selector: 'textarea',
@@ -19,22 +25,19 @@
     toolbar2: 'undo redo | insert | bullist numlist outdent indent | link table image uploadimage | forecolor backcolor | codesample emoticons | visualblocks code'
   });
 
-
-
-= form_for @staff_test, method: :patch, html: { role: 'form' } do |f|
-  %div.btn-group.btn-group-lg
-    = link_to t('.exit'), staff_tests_path, class: "btn btn-default button"
-    %button.btn.btn-default{ type: "submit button" }
-      = t('.submit')
-      
-  %div.form-group
-    %label.control-label{ for: 'name' }
-      = t('.name')
-    = f.text_field :name, autofocus: true, :class => "form-control", :id => "name", :type => "name"
-  %div.form-group
+= form_for @question, url: url_form, html: { role: 'form' } do |f|
+  %div.col-sm-6
+    %div.btn-group.btn-group-lg
+      = link_to t('.back'), staff_test_questions_path(@staff_test), {class: "btn btn-default button" }
+      %button.btn.btn-default{ type: "submit button" }
+        = t('.submit')
+    %br
     %label.control-label{ for: 'description' }
       = t('.description')
-    = f.text_area :description, :class => "tinymce", id: "element",  :rows => 20, :cols => 140
+    = f.text_area :description, autofocus: true, :class => "tinymce", id: "element",  :rows => 20, :cols => 140
+  %div.col-sm-6
+    = number_field_tag 'id', @question.id, hidden: true
+    
 
   
 :javascript

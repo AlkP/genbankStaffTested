@@ -1,0 +1,11 @@
+%tr{ class: class_name(answer) }
+  %td
+    = link_to answer.name, 
+          edit_answer_path(answer.id),
+          remote: true
+  %td
+    = link_to image_tag("delete.png", border: 0, size: '24x24'),
+        answer_path(answer.id),
+        :remote => true,
+        :method => :delete, 
+        :data => { :confirm => t('.confirm') }
