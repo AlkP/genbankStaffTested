@@ -21,7 +21,7 @@
 
 
 
-= form_for @staff_test, method: :patch, html: { role: 'form' } do |f|
+= form_for @staff_test, html: { role: 'form' } do |f|
   %div.btn-group.btn-group-lg
     = link_to t('.exit'), staff_tests_path, class: "btn btn-default button"
     %button.btn.btn-default{ type: "submit button" }
