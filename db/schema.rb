@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404113817) do
+ActiveRecord::Schema.define(version: 20170522085808) do
 
   create_table "access_times", force: :cascade do |t|
     t.string   "name"
@@ -116,6 +116,9 @@ ActiveRecord::Schema.define(version: 20170404113817) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "failed_attempts"
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.index ["email"], name: "index_users_on_email"
     t.index ["nomenclature_id"], name: "index_users_on_nomenclature_id"
     t.index ["structure_id"], name: "index_users_on_structure_id"

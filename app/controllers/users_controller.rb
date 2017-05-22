@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :flash_clear, only: [ :new, :show, :edit, :update, :create ]
-  before_action :set_user, only: [ :show, :edit, :destroy, :update, :edit_password, :update_password ]
+  before_action :set_user, only: [ :show, :edit, :destroy, :update, :edit_password, :update_password, :open, :close ]
   before_action :set_variable, only: [ :new, :show, :edit, :update, :delete_group, :add_group ]
   before_action :sleep_now, only: [ :new, :show, :edit, :update ]
   before_action :set_for_edit_form, only: [ :show, :edit ]
@@ -85,6 +85,16 @@ class UsersController < ApplicationController
     UserGroup.create(user_id: params[:user_id], group_id: params[:group_id])
     set_for_edit_form
     render 'edit'
+  end
+  
+  def close
+    @user.lock_access!
+    redirect_to users_path
+  end
+
+  def open
+    @user.unlock_access!
+    redirect_to users_path
   end
   
   private

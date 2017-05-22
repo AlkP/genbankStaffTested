@@ -14,18 +14,28 @@
     = user.last_sign_in_ip
   %td
     = link_to image_tag("pen.png", border: 0, size: '24x24'), 
-          edit_user_path(user), 
+          edit_user_path(user),
+          title: "Edit user: '" + user.initials + "'", 
           remote: true, 
           onclick: "$('#modal-container-110063').modal('show');"
   %td
     - if user.avalable_to_delete?
       = link_to image_tag("delete.png", border: 0, size: '24x24'),
           user_path(user, :page => params[:page]),
+          title: "Delete user: '" + user.initials + "'", 
           :method => :delete, 
           :data => { :confirm => t('.confirm', username: user.username) }
   %td
     -if admin? && user.id != 1
-      = link_to image_tag("lock.png", border: 0, size: '24x24'),
+      = link_to image_tag("key.png", border: 0, size: '24x24'),
         edit_password_path(user.id),
+        title: "Change password: '" + user.initials + "'", 
         remote: true,
         onclick: "$('#modal-container-110063').modal('show');"
+  %td
+    -if admin? && user.id != 1
+      - if user.access_locked?
+        = link_to image_tag("lock.png", border: 0, size: '24x24'), user_open_path(user), title: "Unlock user: '" + user.initials + "'"
+      - else
+        = link_to image_tag("unlock.png", border: 0, size: '24x24'), user_close_path(user), title: "Lock user: '" + user.initials + "'"
+
